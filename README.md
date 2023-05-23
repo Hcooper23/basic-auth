@@ -8,8 +8,8 @@ Authentication System Phase 1: Deploy an Express server that implements Basic Au
 
 ## Links and Resources
 
-- [GitHub Actions ci/cd](https://github.com/Hcooper23/api-server/actions)
-- [back-end dev server url](https://mainapiserver.onrender.com/)
+- [GitHub Actions ci/cd](https://github.com/Hcooper23/basic-auth/actions)
+- [back-end dev server url](https://basic-auth-rxcz.onrender.com/)
 
 ## Collaborators
 
