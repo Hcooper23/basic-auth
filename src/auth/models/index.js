@@ -1,23 +1,24 @@
-// Import necessary modules and dependencies
 const Sequelize = require('sequelize');
 
-// Initialize your Sequelize instance
 const sequelize = new Sequelize({
-  // Add your database connection details here based on your config/config.json file
   dialect: 'postgres',
-  host: 'your_host',
-  username: 'your_username',
+  host: 'localhost',
+  username: 'haydenjamescooper',
   password: 'your_password',
-  database: 'your_database_name',
+  database: 'basic-auth',
 });
 
-// Load the users model
-const Users = require('./users-model');
+const Users = sequelize.define('User', {
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
 
-// Define associations, if any
-
-// Export the models
 module.exports = {
   Users,
-  // Add other models here if you have more
 };
