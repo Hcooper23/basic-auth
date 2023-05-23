@@ -18,6 +18,8 @@ Authentication System Phase 1: Deploy an Express server that implements Basic Au
  Coriana Williams
  ChatGPT for test development and work arounds for code issues.
 
+ - [Git Node_Modules Remove Per Grader For Re-Do](https://gist.github.com/lmcneel/45594e550a3403d589bdcaad38138a83)
+
 ## Setup ///
 
 ## `.env` requirements (where applicable)
