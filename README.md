@@ -8,8 +8,8 @@ Authentication System Phase 1: Deploy an Express server that implements Basic Au
 
 ## Links and Resources
 
-- [GitHub Actions ci/cd](https://github.com/Hcooper23/api-server/actions)
-- [back-end dev server url](https://mainapiserver.onrender.com/)
+- [GitHub Actions ci/cd](https://github.com/Hcooper23/basic-auth/actions)
+- [back-end dev server url](https://basic-auth-rxcz.onrender.com/)
 
 ## Collaborators
 
@@ -17,6 +17,8 @@ Authentication System Phase 1: Deploy an Express server that implements Basic Au
  Kao Saelor
  Coriana Williams
  ChatGPT for test development and work arounds for code issues.
+
+ - [Git Node_Modules Remove Per Grader For Re-Do](https://gist.github.com/lmcneel/45594e550a3403d589bdcaad38138a83)
 
 ## Setup ///
 

@@ -18,7 +18,10 @@ app.post('/users', (req, res) => {
   const user = req.body;
 });
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'postgres',
+});
 
 app.use(express.urlencoded({ extended: true }));
 
