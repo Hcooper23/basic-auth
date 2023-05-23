@@ -1,34 +1,31 @@
-// Import necessary modules and dependencies
+'use strict';
+
 const express = require('express');
 const basicAuth = require('./middleware/basic');
 const { Users } = require('./models');
 
-// Create the Express router
 const router = express.Router();
 
-// POST route for /signup
 router.post('/signup', async (req, res, next) => {
   try {
-    // Extract username and password from the request body
+    const { username, password } = req.body;
 
-    // Create a new user record in the database
+    const user = await Users.create({ username, password });
 
-    // Return a 201 status with the created user record
+    res.status(201).json(user);
   } catch (error) {
-    // Call next() with an appropriate error in case of any error
+    next(error);
   }
 });
 
-// POST route for /signin
 router.post('/signin', basicAuth, async (req, res, next) => {
   try {
-    // Retrieve the authenticated user from the request object
+    const user = req.user;
 
-    // Return a 200 status with the user object
+    res.status(200).json(user);
   } catch (error) {
-    // Call next() with an error message "Invalid Login"
+    next(new Error('Invalid Login'));
   }
 });
 
-// Export the router
 module.exports = router;

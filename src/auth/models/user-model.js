@@ -1,9 +1,10 @@
-// Import necessary modules and dependencies
+'use strict';
 const Sequelize = require('sequelize');
+const bcrypt = require('bcrypt');
 
-// Define the Sequelize model for the users table
-const Users = sequelize.define('users', {
-  // Define the fields for the users table
+const saltRounds = 10; // Define the number of salt rounds for password hashing
+
+const Users = Sequelize.define('users', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -15,15 +16,12 @@ const Users = sequelize.define('users', {
   },
 });
 
-// Add a before-create hook to hash the password before saving the user
 Users.beforeCreate((user) => {
-  // Implement password hashing logic
+  user.password = bcrypt.hashSync(user.password, saltRounds);
 });
 
-// Create a method to authenticate a user using the hashed password
 Users.prototype.authenticate = function (password) {
-  // Implement authentication logic
+  return bcrypt.compareSync(password, this.password);
 };
 
-// Export the Users model
 module.exports = Users;

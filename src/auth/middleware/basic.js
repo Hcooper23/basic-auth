@@ -1,17 +1,35 @@
-// Import necessary modules and dependencies
-
-// Define the basic authentication middleware function
 const basicAuth = (req, res, next) => {
-    // Extract username and password from request headers
-  
-    // Validate the credentials
-  
-    // Add the user record to the request object
-  
-    // Call next() with an error in case of bad login
-  
-    // Call next() to proceed to the next middleware or route handler
-  };
-  
-  // Export the basicAuth middleware function
-  module.exports = basicAuth;
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Basic ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const credentials = authHeader.split(' ')[1];
+  const decodedCredentials = Buffer.from(credentials, 'base64').toString('utf8');
+  const [username, password] = decodedCredentials.split(':');
+
+  const isValidCredentials = validateCredentials(username, password);
+  if (!isValidCredentials) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const user = fetchUser(username);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  req.user = user;
+
+  next();
+};
+
+const validateCredentials = (username, password) => {
+  return username === 'admin' && password === 'password';
+};
+
+const fetchUser = (username) => {
+  return { username };
+};
+
+module.exports = basicAuth;
