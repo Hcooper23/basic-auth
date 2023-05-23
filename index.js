@@ -1,38 +1,31 @@
 'use strict';
 
-// 3rd Party Resources
 require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Prepare the express app
 const app = express();
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
-// Process JSON input and put the data on req.body
 app.use(express.json());
 
 app.post('/users', (req, res) => {
   const user = req.body;
-  // Handle the user data as needed
 });
 
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
-// Process FORM input and put the data on req.body
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/submit', (req, res) => {
   const formData = req.body;
-  // Handle the form data as needed
 });
 
-// Create a Sequelize model
 const Users = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
@@ -55,10 +48,6 @@ Users.create({
     console.error('Error creating user:', error);
   });
 
-// Signup Route -- create a new user
-// Two ways to test this route with httpie
-// echo '{"username":"john","password":"foo"}' | http post :3000/signup
-// http post :3000/signup username=john password=foo
 app.post('/signup', async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -69,15 +58,12 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-// Signin Route -- login with username and password
-// test with httpie
-// http post :3000/signin -a john:foo
 app.post('/signin', async (req, res) => {
   try {
-    const basicHeaderParts = req.headers.authorization.split(' '); // ['Basic', 'am9objpmb28=']
-    const encodedString = basicHeaderParts.pop(); // am9objpmb28=
-    const decodedString = base64.decode(encodedString); // "username:password"
-    const [username, password] = decodedString.split(':'); // username, password
+    const basicHeaderParts = req.headers.authorization.split(' ');
+    const encodedString = basicHeaderParts.pop();
+    const decodedString = base64.decode(encodedString);
+    const [username, password] = decodedString.split(':');
 
     const user = await Users.findOne({ where: { username: username } });
     const valid = await bcrypt.compare(password, user.password);
@@ -91,7 +77,6 @@ app.post('/signin', async (req, res) => {
   }
 });
 
-// make sure our tables are created, start up the HTTP server.
 sequelize
   .sync()
   .then(() => {

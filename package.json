@@ -1,32 +1,28 @@
 {
-    "name": "server",
-    "version": "1.0.0",
-    "description": "",
-    "main": "app.js",
-    "scripts": {
-      "start": "node app.js",
-      "watch": "nodemon app.js",
-      "init:config": "sequelize init:config",
-      "db:create": "sequelize db:create",
-      "test-watch": "NODE_ENV=test jest --watchAll",
-      "test": "NODE_ENV=test jest"
-    },
-    "jest": {
-      "testEnvironment": "node"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "base-64": "^1.0.0",
-      "bcrypt": "^5.0.0",
-      "cors": "^2.8.5",
-      "dotenv": "^8.2.0",
-      "express": "^4.17.1",
-      "jest": "^26.6.3",
-      "pg": "^8.6.0",
-      "sequelize": "^6.6.2",
-      "sequelize-cli": "^6.2.0",
-      "sqlite3": "^5.0.2"
-    }
+  "name": "your_project_name",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-eslint": "^12.1.0",
+    "eslint-plugin-eslint": "^7.28.0",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.4"
   }
+}
